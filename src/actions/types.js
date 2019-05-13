@@ -1,3 +1,4 @@
 export const FETCH_CARDS = 'FETCH_CARDS';
-export const DRAW_CARDS = 'DRAW_CARDS';
-export const TURN = 'TURN';
+export const PLAYERS = 'PLAYERS';
+export const CONFIGS = 'CONFIGS';
+export const GAME = 'GAME';

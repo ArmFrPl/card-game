@@ -1,63 +1,46 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import Game from '../containers/Game';
 
-class WelcomeScreen extends React.Component{
+export default class WelcomeScreen extends React.Component{
+
+  state = {
+    name: '',
+    playerCount: 0
+  };
+
+  onNameChange = (e) => {
+    this.setState({name: e.target.value})
+  };
+
+  onCountChange = (e) => {
+    this.setState({playerCount: e.target.value})
+  };
+
+  onSubmit = (e) => {
+    const status = 'gameStarted';
+    e.preventDefault();
+    this.setState({status})
+    this.props.gameConfigs(this.state.name, this.state.playerCount, status)
+  };
+
   render() {
     return (
-      <div style={{
-        width: 400,
-        height: 300,
-        margin:'0 auto',
-        textAlign: 'center',
-        marginTop: '12.5%',
-      }} >
-        <h1 className="ui header">Welcome to Game</h1>
-        <div className="ui middle aligned animated list">
-          <div className="item">
-              <div className="content">
-                <Link to="/start/2">
-                  <div className="ui button primary">2 Players</div>
-                </Link>
+      <div>
+        {
+          this.props.configs.status === 'gettingConfigs' ?
+            (
+              <div>
+                <form className="ui form">
+                  <input type="text" name="name" placeholder="Name Of Player" onChange={this.onNameChange}/>
+                  <input type="number" name="playerCount" placeholder="Number Of Players" min="2" max="5"
+                         onChange={this.onCountChange}/>
+                  <button className="ui button primary" onClick={this.onSubmit}>Submit</button>
+                </form>
               </div>
-          </div>
-        </div>
-        <div className="ui middle aligned animated list">
-          <div className="item">
-              <div className="content">
-                <Link to="/start/3">
-                  <div className="ui button primary">3 Players</div>
-                </Link>
-              </div>
-          </div>
-        </div>
-        <div className="ui middle aligned animated list">
-          <div className="item">
-              <div className="content">
-                <Link to="/start/4">
-                  <div className="ui button primary">4 Players</div>
-                </Link>
-              </div>
-          </div>
-        </div>
-        <div className="ui middle aligned animated list">
-          <div className="item">
-              <div className="content">
-                <Link to="/start/5">
-                  <div className="ui button primary">5 Players</div>
-                </Link>
-              </div>
-          </div>
-        </div>
-        <div className="ui middle aligned animated list">
-          <div className="item">
-              <div className="content">
-                  <div className="ui button negative" onClick={window.close()}>Exit</div>
-              </div>
-          </div>
-        </div>
+            ) : <Game />
+        }
       </div>
     )
   }
-};
+}
 
-export default WelcomeScreen;

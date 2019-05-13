@@ -1,46 +1,34 @@
 import React from "react";
-import { connect } from "react-redux";
-import { fetchCards, drawCards} from "../actions";
-import PlayerHands from './PlayerHands';
+import PlayerHands from "./PlayerHands";
+import Spinner from "../spinner";
 
 class Game extends React.Component {
 
   componentDidMount() {
+    this.initGame();
+  }
+
+  initGame() {
     this.props.fetchCards();
+    // this.props.configs();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.draw === this.props.draw){
-      for (let i = 0; i<this.props.match.params.playerCount; i++){
-        this.props.drawCards(this.props.deck.deck_id)
+    if (prevProps.deck !== this.props.deck){
+      for (let i = 0; i<this.props.configs.playerCount; i++){
+        this.props.players(this.props.deck.deck_id, this.props.configs.name, i);
       }
     }
   }
 
   render() {
-    return (
+    return this.props.player.hand ? (
       <div>
-        <PlayerHands hands={this.props.draw.hands}/>
+        <PlayerHands hands={this.props.player.hand.data.cards} id={this.props.player.id}/>
       </div>
-    );
+    ) : <Spinner />
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    deck: state.deck,
-    draw: state.draw
-  };
-};
+export default Game;
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchCards: () => dispatch(fetchCards()),
-    drawCards: (deck_id) => dispatch(drawCards(deck_id))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Game);
