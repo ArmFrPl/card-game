@@ -1,4 +1,4 @@
-import {CONFIGS} from "../actions/types";
+import {GET_CONFIGS} from "../actions/types";
 
 const DEFAULT_STATE = {
   playerCount: 0,
@@ -8,7 +8,7 @@ const DEFAULT_STATE = {
 
 export default (state = DEFAULT_STATE, action) => {
 
-  if (action.type === CONFIGS) {
+  if (action.type === GET_CONFIGS) {
     return action.payload
   }
   return state;

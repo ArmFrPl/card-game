@@ -1,5 +1,5 @@
 import cardsApi from '../apis/cardsApi';
-import {PLAYERS, FETCH_CARDS, CONFIGS, GAME} from "./types";
+import {FETCH_CARDS, GET_CONFIGS, PASS_PLAYERS_CARDS, RENDER_PLAYERS} from "./types";
 
 export const fetchCards = async () => {
   const request = await cardsApi.get('/new/shuffle/?deck_count=1');
@@ -7,19 +7,24 @@ export const fetchCards = async () => {
   return({type: FETCH_CARDS, payload: request});
 };
 
-export const loadPlayers = async (deck_id, name, id) => {
+export const loadPlayers = async (name, id) => {
+
+  return({type: RENDER_PLAYERS, payload: {name, id}});
+};
+
+export const getPlayersHands = async (deck_id) => {
   const hand = await cardsApi.get(`/${deck_id}/draw/?count=10`);
 
-  return({type: PLAYERS, payload: {hand, name, id}});
-};
+  return ({type: PASS_PLAYERS_CARDS, payload: hand})
+}
 
 export const getGameConfigs = (name, playerCount, status) => {
 
-  return({type: CONFIGS, payload: {name, playerCount, status}})
+  return({type: GET_CONFIGS, payload: {name, playerCount, status}})
 
 };
-export const game = (cardsOnTable, currentPlayerId, status) => {
-
-  return({type: GAME, payload: {cardsOnTable, currentPlayerId, status}})
-
-};
+// export const game = (cardsOnTable, currentPlayerId, status) => {
+//
+//   return({type: GAME, payload: {cardsOnTable, currentPlayerId, status}})
+//
+// };

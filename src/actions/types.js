@@ -1,4 +1,4 @@
 export const FETCH_CARDS = 'FETCH_CARDS';
-export const PLAYERS = 'PLAYERS';
-export const CONFIGS = 'CONFIGS';
-export const GAME = 'GAME';
+export const RENDER_PLAYERS = 'RENDER_PLAYERS';
+export const PASS_PLAYERS_CARDS = 'PASS_PLAYERS_CARDS';
+export const GET_CONFIGS = 'GET_CONFIGS';
