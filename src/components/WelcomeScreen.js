@@ -17,7 +17,7 @@ export default class WelcomeScreen extends React.Component{
   };
 
   onSubmit = (e) => {
-    const status = 'gameStarted';
+    const status = 'initializing';
     e.preventDefault();
     this.setState({status})
     this.props.gameConfigs(this.state.name, this.state.playerCount, status)

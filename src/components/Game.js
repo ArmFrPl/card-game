@@ -10,18 +10,10 @@ class Game extends React.Component {
 
   initGame() {
     this.props.fetchCards();
-    // this.props.configs();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.deck !== this.props.deck){
-      for (let i = 0; i<this.props.configs.playerCount; i++){
-        this.props.players(this.props.deck.deck_id, this.props.configs.name, i);
-      }
-    }
   }
 
   render() {
+    // console.log(this.props)
     return this.props.player.hand ? (
       <div>
         <PlayerHands hands={this.props.player.hand.data.cards} id={this.props.player.id}/>

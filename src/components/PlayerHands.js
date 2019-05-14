@@ -2,7 +2,6 @@ import React from "react";
 import Player from './Player'
 
 class PlayerHands extends React.Component {
-
   playersPosition(){
     let positions = {};
     if(this.props.hands.length === 2){
