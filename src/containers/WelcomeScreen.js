@@ -1,17 +1,20 @@
-import { getGameConfigs, loadPlayers, fetchCards } from "../actions";
+import {getGameConfigs, loadPlayers, fetchCards, emptyPlayers, emptyCardsOnTable} from "../actions";
 import { connect } from "react-redux";
-import WelcomeScreen from "../components/WelcomeScreen";
+import WelcomeScreen2 from "../components/WelcomeScreen";
 
 const mapStateToProps = state => {
   return {
     deck: state.deck,
     configs: state.configs,
-    player: state.player
+    player: state.player,
+    game: state.game
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    emptyPlayers: () => dispatch(emptyPlayers()),
+    emptyCardsOnTable: (cardsOnTable, scoreFromTable) => dispatch(emptyCardsOnTable(cardsOnTable, scoreFromTable)),
     fetchCards: () => dispatch(fetchCards()),
     getGameConfigs: (name, playerCount, status) =>
       dispatch(getGameConfigs(name, playerCount, status)),
@@ -22,4 +25,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WelcomeScreen);
+)(WelcomeScreen2);

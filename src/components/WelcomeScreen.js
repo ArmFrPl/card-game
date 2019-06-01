@@ -2,11 +2,12 @@ import React from "react";
 import Game from "../containers/Game";
 import Spinner from "../spinner";
 
-export default class WelcomeScreen extends React.Component {
+export default class WelcomeScreen2 extends React.Component {
   state = {
     name: "",
     playerCount: 0
   };
+
   componentDidMount() {
     this.props.fetchCards();
   }
@@ -58,7 +59,10 @@ export default class WelcomeScreen extends React.Component {
   }
 
   render() {
-    // console.log(this.props)
+    if (!this.props.configs) {
+      return '';
+    }
+
     return (
       <div>
         {this.props.configs.status === "gettingConfigs"
