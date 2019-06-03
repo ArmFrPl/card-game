@@ -1,5 +1,5 @@
 import React from 'react';
-import {removeSelectedCard, selectCard, startTurnAgain} from "../actions";
+import {isPlayed, removeSelectedCard, selectCard, startTurnAgain} from "../actions";
 import {connect} from "react-redux";
 
 class Player extends React.Component {
@@ -116,23 +116,9 @@ class Player extends React.Component {
     const {currentPlayerId} = this.props.game;
     if (id === currentPlayerId) {
       this.props.selectCard(card, currentPlayerId);
-      this.props.removeSelectedCard(card)
+      this.props.removeSelectedCard(card);
+      this.props.isPlayed(true);
     }
-  }
-
-  botPlay(){
-    let currentPlayer;
-    const {currentPlayerId} = this.props.game;
-
-    currentPlayer = this.props.player.players.find(curPlay =>  curPlay.id === this.props.game.currentPlayerId)
-    let randomNum = Math.floor(Math.random() * this.props.player.players[currentPlayer.id].hand.length);
-    setTimeout(() => {
-      console.log(currentPlayer.id+1, this.props.game.cardsOnTable.length)
-      if(currentPlayer.hand){
-        this.props.selectCard(currentPlayer.hand[randomNum], currentPlayerId);
-        this.props.removeSelectedCard(currentPlayer.hand[randomNum])
-      }
-    }, 1000)
   }
 
   render() {
@@ -141,8 +127,6 @@ class Player extends React.Component {
 
     if(currentPlayerId > +playerCount-1) {
       this.props.changeTurnToStart(currentPlayerId)
-    } else if(currentPlayerId !== 0 && currentPlayerId < +playerCount ){
-      this.botPlay()
     }
 
     return(
@@ -168,6 +152,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   selectCard: (card, currentPlayerId) => {dispatch(selectCard(card, currentPlayerId))},
+  isPlayed: (isPlay) => {dispatch(isPlayed(isPlay))},
   removeSelectedCard: (card) => {dispatch(removeSelectedCard(card))},
   changeTurnToStart: (currentPlayerId) => {dispatch(startTurnAgain(currentPlayerId))}
 });

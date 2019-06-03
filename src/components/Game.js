@@ -62,7 +62,7 @@ class Game extends React.Component {
       this.props.player.players.map(player => {
 
           return <Player hand={player.hand} key={player.id} id={player.id} name={player.name} score={player.score}
-                         playerCount={+this.props.configs.playerCount} />
+                         playerCount={+this.props.configs.playerCount}/>
       })
     )
   }
@@ -70,6 +70,7 @@ class Game extends React.Component {
   handleRestart = () => {
     this.props.restartGame();
     this.props.emptyPlayers();
+    this.props.emptyCardsOnTable(this.props.game.cardsOnTable, this.props.game.scoreOnTable);
   };
 
   renderWinner(players) {
@@ -91,7 +92,28 @@ class Game extends React.Component {
       </div>
     )
   }
+
+  botPlay(){
+    this.props.isPlayed(false);
+    let currentPlayer;
+    const {currentPlayerId} = this.props.game;
+
+    currentPlayer = this.props.player.players.find(curPlay =>  curPlay.id === this.props.game.currentPlayerId)
+    let randomNum = Math.floor(Math.random() * this.props.player.players[currentPlayer.id].hand.length);
+    setTimeout(() => {
+      if(currentPlayer.hand){
+        this.props.selectCard(currentPlayer.hand[randomNum], currentPlayerId);
+        this.props.removeSelectedCard(currentPlayer.hand[randomNum]);
+        this.props.isPlayed(true);
+      }
+      if(currentPlayerId === this.props.player.players.length - 1){
+        this.props.isScoreAdded(true);
+      }
+    }, 1000)
+  }
+
   renderTableCards() {
+    console.log(this.props.game.isAdded)
     return (
       <div>
         {
@@ -109,15 +131,16 @@ class Game extends React.Component {
             if(this.props.game.cardsOnTable.length === +this.props.configs.playerCount && this.props.game.currentPlayerId === 0){
               let calculatedScore = this.calculateScore(player.score, this.props.game.scoreOnTable);
 
-                setTimeout(() => {
-                  if (player.id === calculatedScore.id) {
-                    this.props.changeScore(calculatedScore.score, calculatedScore.scoreOnTable, calculatedScore.id);
-                    this.props.emptyCardsOnTable(this.props.game.cardsOnTable, this.props.game.scoreOnTable);
-                  }
-                }, 500);
+              setTimeout(() => {
+                if (player.id === calculatedScore.id && this.props.game.isAdded) {
+                  this.props.changeScore(calculatedScore.score, calculatedScore.scoreOnTable, calculatedScore.id);
+                  this.props.isScoreAdded(false);
+                  this.props.emptyCardsOnTable(this.props.game.cardsOnTable, this.props.game.scoreOnTable);
+                }
+              }, 1000);
             }
             return <Player hand={player.hand} key={player.id} id={player.id} name={player.name} score={player.score}
-                           playerCount={+this.props.configs.playerCount}/>
+                           playerCount={+this.props.configs.playerCount} />
           })
         }
       </div>
@@ -126,7 +149,15 @@ class Game extends React.Component {
 
 
   render() {
-   if (+this.props.configs.playerCount === this.props.player.players.length) {
+    let {currentPlayerId} = this.props.game;
+    let {playerCount} = this.props.configs;
+
+    if(currentPlayerId !== 0 && currentPlayerId < +playerCount && this.props.game.isPlayed === true){
+      this.botPlay();
+    }
+
+    if (+this.props.configs.playerCount === this.props.player.players.length) {
+
       return (
         <div>
           {

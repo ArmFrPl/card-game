@@ -18,14 +18,18 @@ export default class WelcomeScreen2 extends React.Component {
 
   onCountChange = e => {
     this.setState({ playerCount: e.target.value });
-  };
+  }
 
   onSubmit = e => {
     const status = "initializing";
     e.preventDefault();
     this.setState({ status });
-    this.props.getGameConfigs(this.state.name, this.state.playerCount, status);
-    this.props.loadPlayers(this.props.deck.deck_id, this.state.name, 0);
+    if(this.state.playerCount > 1 && this.state.playerCount < 6){
+      this.props.getGameConfigs(this.state.name, this.state.playerCount, status);
+      this.props.loadPlayers(this.props.deck.deck_id, this.state.name, 0);
+    }else {
+      alert('Please enter number between 2 and 5');
+    }
   };
 
   configsForm() {

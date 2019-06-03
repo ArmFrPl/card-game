@@ -9,7 +9,9 @@ import {
   CHANGE_SCORE,
   EMPTY_CARDS_ON_TABLE,
   RESTART_GAME,
-  EMPTY_PLAYERS
+  EMPTY_PLAYERS,
+  IS_SCORE_ADDED,
+  IS_PLAYED
 } from "./types";
 
 export const fetchCards = async () => {
@@ -56,9 +58,10 @@ export const changeScore = (score, scoreFromTable, id) => {
   return ({type: CHANGE_SCORE, payload: {score, id}})
 };
 
-export const emptyCardsOnTable = (cardsOnTable, scoreFromTable = 0) => {
+export const emptyCardsOnTable = (cardsOnTable, scoreFromTable ) => {
 
   cardsOnTable = [];
+  scoreFromTable = 0;
 
   return ({type: EMPTY_CARDS_ON_TABLE, payload: {cardsOnTable, scoreFromTable}})
 };
@@ -76,4 +79,13 @@ export const emptyPlayers = () => {
   const scoreOnTable = 0;
 
   return {type: EMPTY_PLAYERS, payload: {players, scoreOnTable}}
+};
+
+export const isPlayed = (isPlayed) => {
+
+  return {type: IS_PLAYED, payload: isPlayed}
+};
+export const isScoreAdded = (isAdded) => {
+
+  return {type: IS_SCORE_ADDED, payload: isAdded}
 };

@@ -5,7 +5,11 @@ import {
   loadPlayers,
   emptyCardsOnTable,
   restartGame,
-  emptyPlayers
+  emptyPlayers,
+  selectCard,
+  removeSelectedCard,
+  isPlayed,
+  isScoreAdded
 } from "../actions";
 import { connect } from "react-redux";
 import Game from "../components/Game";
@@ -18,6 +22,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  selectCard: (card, currentPlayerId) => {dispatch(selectCard(card, currentPlayerId))},
+  removeSelectedCard: (card) => {dispatch(removeSelectedCard(card))},
+  isPlayed: (isPlay) => {dispatch(isPlayed(isPlay))},
+  isScoreAdded: (isAdded) => {dispatch(isScoreAdded(isAdded))},
   emptyPlayers: () => dispatch(emptyPlayers()),
   restartGame: () => dispatch(restartGame()),
   emptyCardsOnTable: (cardsOnTable, scoreFromTable) => dispatch(emptyCardsOnTable(cardsOnTable, scoreFromTable)),

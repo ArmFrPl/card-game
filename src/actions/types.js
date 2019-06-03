@@ -8,3 +8,5 @@ export const CHANGE_SCORE = 'CHANGE_SCORE';
 export const EMPTY_CARDS_ON_TABLE = 'EMPTY_CARDS_ON_TABLE';
 export const RESTART_GAME = 'RESTART_GAME';
 export const EMPTY_PLAYERS = 'EMPTY_PLAYERS';
+export const IS_SCORE_ADDED = 'IS_SCORE_ADDED';
+export const IS_PLAYED = 'IS_PLAYED';
