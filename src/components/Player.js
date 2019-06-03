@@ -31,7 +31,7 @@ class Player extends React.Component {
         },
         {
           top:'46.5%',
-          left: '-12.5%',
+          left: 0,
           transform: 'rotate(90deg)',
           position: 'absolute',
           width: 500
@@ -53,7 +53,7 @@ class Player extends React.Component {
         },
         {
           top:'47.5%',
-          left: '-12.5%',
+          left: 0,
           transform: 'rotate(90deg)',
           position: 'absolute',
           width: 500
@@ -66,7 +66,7 @@ class Player extends React.Component {
         },
         {
           top:'47.5%',
-          right: '-12.5%',
+          right: 0,
           transform: 'rotate(90deg)',
           position: 'absolute',
           width: 500
@@ -82,7 +82,7 @@ class Player extends React.Component {
         },
         {
           top:'47.5%',
-          left: '-12.5%',
+          left: 0,
           transform: 'rotate(90deg)',
           position: 'absolute',
           width: 500
@@ -101,7 +101,7 @@ class Player extends React.Component {
         },
         {
           top:'47.5%',
-          right: '-12.5%',
+          right: 0,
           transform: 'rotate(-90deg)',
           position: 'absolute',
           width: 500
