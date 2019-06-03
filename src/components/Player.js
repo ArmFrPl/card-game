@@ -10,13 +10,13 @@ class Player extends React.Component {
       positions = [
         {
           bottom: 0,
-          left: '29.5%',
+          left: 'calc(50% - 250px)',
           position: 'absolute',
           width: 500
         },
         {
           top: 0,
-          left: '29.5%',
+          left: 'calc(50% - 250px)',
           position: 'absolute',
           width: 500
         }
@@ -25,20 +25,19 @@ class Player extends React.Component {
       positions = [
         {
           bottom: 0,
-          left: '29.5%',
+          left: 'calc(50% - 250px)',
           position: 'absolute',
           width: 500
         },
         {
-          top:'46.5%',
-          left: 0,
-          transform: 'rotate(90deg)',
+          top: 0,
+          left: '4%',
           position: 'absolute',
           width: 500
         },
         {
-          top: '0',
-          left: '29.5%',
+          top: 0,
+          right: '4%',
           position: 'absolute',
           width: 500
         }
@@ -47,26 +46,26 @@ class Player extends React.Component {
       positions = [
         {
           bottom: 0,
-          left: '29.5%',
+          left: 'calc(50% - 250px)',
           position: 'absolute',
           width: 500
         },
         {
           top:'47.5%',
-          left: 0,
+          left: '-150px',
           transform: 'rotate(90deg)',
           position: 'absolute',
           width: 500
         },
         {
           top: 0,
-          left: '29.5%',
+          left: 'calc(50% - 250px)',
           position: 'absolute',
           width: 500
         },
         {
           top:'47.5%',
-          right: 0,
+          right: '-150px',
           transform: 'rotate(90deg)',
           position: 'absolute',
           width: 500
@@ -76,13 +75,13 @@ class Player extends React.Component {
       positions = [
         {
           bottom: 0,
-          left: '29.5%',
+          left: 'calc(50% - 250px)',
           position: 'absolute',
           width: 500
         },
         {
           top:'47.5%',
-          left: 0,
+          left: '-150px',
           transform: 'rotate(90deg)',
           position: 'absolute',
           width: 500
@@ -101,8 +100,8 @@ class Player extends React.Component {
         },
         {
           top:'47.5%',
-          right: 0,
-          transform: 'rotate(-90deg)',
+          right: '-150px',
+          transform: 'rotate(90deg)',
           position: 'absolute',
           width: 500
         }
