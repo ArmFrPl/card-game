@@ -120,7 +120,7 @@ class Game extends React.Component {
           this.props.game.cardsOnTable.map(card => {
             return (
               <div key={Math.random()} style={{position: 'absolute', left: '51.5%', top: '42.5%'}} id={'cardsOnTable'}>
-                <img src={card.image} alt="" style={{width: 65}}/>
+                <img src={card.image} alt="" style={{width: 50}}/>
               </div>
               )
           })

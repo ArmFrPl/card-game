@@ -12,13 +12,13 @@ class Player extends React.Component {
           bottom: 0,
           left: '29.5%',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
           top: 0,
           left: '29.5%',
           position: 'absolute',
-          width: 650
+          width: 500
         }
       ]
     }else if(+this.props.playerCount === 3){
@@ -27,20 +27,20 @@ class Player extends React.Component {
           bottom: 0,
           left: '29.5%',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
           top:'46.5%',
-          left: '-14.5%',
+          left: '-12.5%',
           transform: 'rotate(90deg)',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
           top: '0',
           left: '29.5%',
           position: 'absolute',
-          width: 650
+          width: 500
         }
       ]
     }else if(+this.props.playerCount === 4){
@@ -49,27 +49,27 @@ class Player extends React.Component {
           bottom: 0,
           left: '29.5%',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
-          top:'60.5%',
-          left: '-14.5%',
+          top:'47.5%',
+          left: '-12.5%',
           transform: 'rotate(90deg)',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
           top: 0,
           left: '29.5%',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
-          top:'20.5%',
-          right: '-14.5%',
-          transform: 'rotate(-90deg)',
+          top:'47.5%',
+          right: '-12.5%',
+          transform: 'rotate(90deg)',
           position: 'absolute',
-          width: 650
+          width: 500
         }
       ]
     }else if(+this.props.playerCount=== 5){
@@ -78,33 +78,33 @@ class Player extends React.Component {
           bottom: 0,
           left: '29.5%',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
-          top:'60.5%',
-          left: '-14.5%',
+          top:'47.5%',
+          left: '-12.5%',
           transform: 'rotate(90deg)',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
           top: 0,
-          left: '15%',
+          left: '4%',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
           top: 0,
-          left: '60%',
+          right: '4%',
           position: 'absolute',
-          width: 650
+          width: 500
         },
         {
-          top:'20.5%',
-          right: '-14.5%',
+          top:'47.5%',
+          right: '-12.5%',
           transform: 'rotate(-90deg)',
           position: 'absolute',
-          width: 650
+          width: 500
         }
       ]
     }
@@ -135,7 +135,7 @@ class Player extends React.Component {
         <h4>Score:{this.props.score}</h4>
         {
           Object.values(this.props.hand).map(card =>
-            <img key={card.code} src={card.image} alt="" style={{width: 65}} onClick={() => this.cardClickHandler(card)} />
+            <img key={card.code} src={card.image} alt="" style={{width: 50}} onClick={() => this.cardClickHandler(card)} />
           )
         }
       </div>

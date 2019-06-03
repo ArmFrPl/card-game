@@ -21,7 +21,7 @@ export const fetchCards = async () => {
 };
 
 export const loadPlayers = async (deck_id, name, id, score = 0) => {
-  const hand = await cardsApi.get(`/${deck_id}/draw/?count=5`);
+  const hand = await cardsApi.get(`/${deck_id}/draw/?count=10`);
 
   return({type: RENDER_PLAYERS, payload: {name, id, hand: hand.data.cards, score}});
 };
